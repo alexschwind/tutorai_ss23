@@ -1,4 +1,5 @@
 from flask import Flask, render_template, jsonify, request
+from secret import openai_key
 import pinecone
 import os
 from langchain.document_loaders import UnstructuredURLLoader, DirectoryLoader
@@ -10,7 +11,7 @@ from langchain.llms import OpenAI
 
 app = Flask(__name__)
 
-os.environ["OPENAI_API_KEY"] = "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"
+os.environ["OPENAI_API_KEY"] = openai_key
 
 embeddings = OpenAIEmbeddings()
 
