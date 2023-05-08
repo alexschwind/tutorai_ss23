@@ -1,5 +1,5 @@
 from flask import Flask, render_template, jsonify, request
-from secret import openai_key
+from secret import openai_key, pinecone_key, pinecone_server
 import pinecone
 import os
 from langchain.document_loaders import UnstructuredURLLoader, DirectoryLoader
@@ -16,8 +16,8 @@ os.environ["OPENAI_API_KEY"] = openai_key
 embeddings = OpenAIEmbeddings()
 
 pinecone.init(
-    api_key="151ed830-8c86-446d-9f19-1c820d20b67f",  # find at app.pinecone.io
-    environment="us-west4-gcp"  # next to api key in console
+    api_key=pinecone_key,  # find at app.pinecone.io
+    environment=pinecone_server  # next to api key in console
 )
 
 index = Pinecone.from_existing_index("tutorai", embeddings)
@@ -34,7 +34,7 @@ def incoming_message():
     query = data["message"]
     print(query)
     docs = index.similarity_search(query, k=5)
-
+    
     answer = chain({"input_documents": docs, "question": query}, return_only_outputs=True)
 
     return jsonify({"message": answer["output_text"]})
