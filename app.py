@@ -32,9 +32,9 @@ def chat():
 def incoming_message():
     data = request.get_json()
     query = data["message"]
-    print(query)
+    print("New question: ", query)
     docs = index.similarity_search(query, k=5)
     
     answer = chain({"input_documents": docs, "question": query}, return_only_outputs=True)
-
+    print(answer)
     return jsonify({"message": answer["output_text"]})

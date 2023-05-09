@@ -60,6 +60,7 @@
         flex: 1;
         overflow-y: auto;
         padding: 10px;
+        overflow-wrap: break-word;
         }
         .msger-chat::-webkit-scrollbar {
         width: 6px;
@@ -175,7 +176,7 @@
     }
     .typing .dot {
       animation: mercuryTypingAnimation 1.8s infinite ease-in-out;
-      background-color: #71daff ; 
+      background-color: #8e8e8e ; 
       border-radius: 50%;
       height: 7px;
       margin-right: 4px;
@@ -199,19 +200,20 @@
     @keyframes mercuryTypingAnimation {
       0% {
         transform: translateY(0px);
-        background-color:#71daff; 
+        background-color:#8e8e8e; 
       }
       28% {
         transform: translateY(-7px);
-        background-color:#9be5ff; 
+        background-color:#b7b7b7; 
       }
       44% {
         transform: translateY(0px);
-        background-color: #c6f0ff; 
+        background-color: #d9d9d9; 
       }
     }
 
 	</style>
+  <link rel="icon" type="image/x-icon" href="/static/Logo.png">
 </head>
 <body>
 
